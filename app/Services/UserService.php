@@ -28,6 +28,10 @@ class UserService
         return $this->userRepository->store($requestHashedPassword);
     }
 
+    public function getUserByEmail($email){
+        return $this->userRepository->GetByEmail($email);
+    }
+
 
 }
 

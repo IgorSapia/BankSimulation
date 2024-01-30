@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserRequest extends FormRequest
+class WithdrawToRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email|max:255|unique:users,email,'. $this->id,
-            'password' => !$this->id ? 'required|string|min:6|confirmed' : '',
+            'receiverEmail'  => 'required|exists:users,email',
+            'type'           => 'required|in:3|exists:statement_types,id',
+            'value'          => 'required|numeric|min:0.01|regex:/^\d+(\.\d{0,2})?$/'
         ];
 
     }

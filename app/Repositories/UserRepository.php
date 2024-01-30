@@ -14,4 +14,8 @@ class UserRepository extends Repository
     public function store($request){
         return $this->model::create($request);
     }
+
+    public function GetByEmail($email){
+        return $this->model::where('email', $email)->first();
+    }
 }
