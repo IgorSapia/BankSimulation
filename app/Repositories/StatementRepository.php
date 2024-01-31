@@ -18,4 +18,8 @@ class StatementRepository extends Repository
     public function getBalance($userId){
         return $this->model::where('user_id', $userId)->sum('value');
     }
+
+    public function PaginatefullStatementPerUser($userId, $perPage){
+        return $this->model->where('user_id', $userId)->paginate($perPage);
+    }
 }

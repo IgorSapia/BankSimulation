@@ -18,4 +18,10 @@ class UserRepository extends Repository
     public function GetByEmail($email){
         return $this->model::where('email', $email)->first();
     }
+
+    public function fullStatement($userId){
+        $user = $this->model::with('Statement')->find($userId);
+
+        return $user;
+    }
 }

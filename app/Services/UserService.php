@@ -32,6 +32,11 @@ class UserService
         return $this->userRepository->GetByEmail($email);
     }
 
+    public function fullStatement(){
+        $user = auth()->user();
+        return $this->userRepository->fullStatement($user->id);
+    }
+
 
 }
 

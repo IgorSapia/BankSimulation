@@ -40,4 +40,8 @@ class UserController extends Controller
             DB::rollback();
         }
     }
+
+    public function fullStatement(){
+        return $this->userService->fullStatement();
+    }
 }

@@ -38,4 +38,9 @@ class Statement extends Model
     protected $casts = [
 
     ];
+
+    public function persona()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
 }
