@@ -2,6 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DepositController;
+use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\WithdrawController;
+use App\Http\Controllers\StatementController;
+
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +24,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('register')->group(function () {
+    Route::Post('/store', [UserController::class, 'store']);
+});
+
+Route::middleware('auth:api')->prefix('user')->group(function () {
+    Route::Get('/', [UserController::class, 'index']);
+});
+
+Route::middleware('auth:api')->prefix('my-bank-account')->group(function () {
+    Route::Post('/deposit', [DepositController::class, 'store']);
+    Route::Get('/balance', [BalanceController::class, 'index']);
+    Route::Get('/statement', [UserController::class, 'fullStatement']);
+    Route::Get('/paginate-statement/{perPage}', [StatementController::class, 'paginateFullStatement']);
+    Route::Post('/withdraw', [WithdrawController::class, 'store']);
+    Route::Post('/withdraw-to', [WithdrawController::class, 'withdrawTo']);
 });
