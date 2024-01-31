@@ -26,7 +26,7 @@ class DepositController extends Controller
     public function store(DepositRequest $request){
         DB::beginTransaction();
         try{
-            $storeService = $this->depositService->store($request);
+            $storeService = $this->depositService->deposit($request);
             DB::commit();
             return response()->json($request, 200);
         }catch(Exception $error){

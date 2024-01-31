@@ -27,7 +27,7 @@ class WithdrawService extends Services
         $this->verifyFounds();
         $this->statementType = $request->type;
 
-        $this->store();
+        return $this->store();
     }
 
     private function store(){
@@ -37,7 +37,7 @@ class WithdrawService extends Services
             "value"             => $this->value
         ];
 
-        return $this->statementRepository->storeDeposit($withdrawArray);
+        return $this->statementRepository->store($withdrawArray);
     }
 
     private function verifyFounds(){

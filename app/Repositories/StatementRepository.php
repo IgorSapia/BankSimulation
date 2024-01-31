@@ -11,8 +11,8 @@ class StatementRepository extends Repository
 {
     protected $model = Statement::class;
 
-    public function storeDeposit($createDeposit){
-        return $this->model::create($createDeposit);
+    public function store($storeData){
+        return $this->model::create($storeData);
     }
 
     public function getBalance($userId){
